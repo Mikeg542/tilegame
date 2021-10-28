@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.drawTile {
+  border: 1px solid black;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+}
