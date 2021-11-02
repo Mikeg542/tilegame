@@ -14,7 +14,7 @@ const App = ({ history }) => {
 
     const VISION_LENGTH = 5;
 
-    const map = [
+    const map1 = [
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -57,8 +57,10 @@ const App = ({ history }) => {
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     ];
 
+    let map = map2;
+
     // display map filters multidimensional map array to only display rows and columns VISION_LENGTH away from player position
-    const displayMap = map2
+    const displayMap = map
         .filter(
             (rows, i) =>
                 i >= pos[0] - VISION_LENGTH && i <= pos[0] + VISION_LENGTH
