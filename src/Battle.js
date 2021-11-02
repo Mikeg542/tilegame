@@ -7,6 +7,7 @@ const Battle = ({ history }) => {
 	const inputEl = useRef(null);
 
 	const [selectedMove, setSelectedMove] = useState(0);
+	const [enemyLife, setEnemyLife] = useState(20);
 
 	useEffect(() => {
 		inputEl.current.focus();
@@ -23,6 +24,10 @@ const Battle = ({ history }) => {
 			amount: 10,
 		},
 	];
+
+	const doMove = (key) => () => {
+		setEnemyLife((prev) => prev - Math.floor(moves[key].damage * 0.1));
+	};
 
 	const handleKeyDown = (event) => {
 		if (![38, 40].includes(event.keyCode)) {
@@ -41,6 +46,9 @@ const Battle = ({ history }) => {
 	};
 	return (
 		<div className="gameBoard">
+			<div className="lifeBar">
+				<div style={{ width: `${(enemyLife / 20) * 100}%` }} />
+			</div>
 			<div
 				className="playerMoveBox"
 				ref={inputEl}
@@ -48,7 +56,10 @@ const Battle = ({ history }) => {
 				onKeyDown={handleKeyDown}
 			>
 				{moves.map((move, i) => (
-					<div className={i === selectedMove ? "active" : ""}>
+					<div
+						className={i === selectedMove ? "active" : ""}
+						onClick={doMove(i)}
+					>
 						{move.name}
 					</div>
 				))}
