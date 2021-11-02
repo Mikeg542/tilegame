@@ -1,0 +1,20 @@
+.gameBoard {
+	width: 264px;
+	height: 264px;
+	position: relative;
+}
+.playerMoveBox {
+	border: 2px solid black;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 120px;
+}
+.playerMoveBox > div {
+	padding: 4px 16px;
+}
+.playerMoveBox > div:hover,
+.playerMoveBox > div.active {
+	background-color: #f5f5f5;
+	cursor: pointer;
+}
