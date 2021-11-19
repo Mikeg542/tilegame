@@ -44,3 +44,36 @@ code {
 #tile6 {
   background-color: grey;
 }
+#tile7 {
+  background-position-x: -386px;
+  background-position-y: 1330px;
+}
+#tile8 {
+  background-position-x: -386px;
+  background-position-y: 1292px;
+}
+#tile9 {
+  background-position-x: -256px;
+  background-position-y: 1280px;
+}
+#tile10 {
+  background-position-x: -98px;
+  background-position-y: 1280px;
+}
+#tile11 {
+  background-position-x: -352px;
+  background-position-y: 1376px;
+}
+#tile12 {
+  background-position-x: -154px;
+  background-position-y: 1310px;
+}
+#tile13 {
+  background-position-x: -98px;
+  background-position-y: 1250px;
+}
+
+#tile14 {
+  background-position-x: -154px;
+  background-position-y: 1250px;
+}

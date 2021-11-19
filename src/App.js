@@ -45,13 +45,13 @@ const App = ({ history }) => {
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 1, 2, 2, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 1, 2, 2, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 1, 4, 4, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 1, 4, 4, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 3, 3, 3, 1, 2, 2, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 3, 3, 3, 1, 2, 2, 2, 4, 4, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 5, 5, 1, 1, 2, 2, 2, 4, 4, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 1, 1, 1, 1, 9, 10, 1, 1, 1, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 1, 1, 1, 1, 9, 10, 1, 1, 1, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 1, 1, 1, 1, 7, 7, 1, 1, 1, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 1, 1, 1, 1, 8, 8, 1, 1, 1, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 3, 3, 3, 1, 9, 10, 1, 1, 1, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 3, 3, 3, 1, 9, 13, 14, 4, 4, 6, 6, 6, 6, 6],
+        [6, 6, 6, 6, 6, 5, 5, 1, 1, 11, 12, 12, 4, 4, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 5, 5, 1, 1, 1, 1, 1, 1, 1, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 5, 5, 1, 1, 1, 3, 3, 3, 3, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -76,7 +76,7 @@ const App = ({ history }) => {
             )
         );
 
-    const barriers = [2, 3, 6]; //which tile ids count as unpassable
+    const barriers = [2, 3, 6, 9, 10, 11, 12, 13, 14]; //which tile ids count as unpassable
 
     const encounters = [5]; // which tile ids have a chance at triggering an encounter
 
@@ -136,6 +136,8 @@ const App = ({ history }) => {
             }
         }
         if (code === 39) {
+            setDir(2);
+            setAlt((prev) => !prev);
             if (
                 pos[1] >= map[0].length - 1 ||
                 barriers.includes(map[pos[0]][pos[1] + 1])
@@ -143,26 +145,26 @@ const App = ({ history }) => {
                 return;
             }
             setPos([pos[0], pos[1] + 1]);
-            setAlt((prev) => !prev);
-            setDir(2);
         }
         if (code === 37) {
+            setDir(3);
+            setAlt((prev) => !prev);
             if (pos[1] <= 0 || barriers.includes(map[pos[0]][pos[1] - 1])) {
                 return;
             }
             setPos([pos[0], pos[1] - 1]);
-            setAlt((prev) => !prev);
-            setDir(3);
         }
         if (code === 38) {
+            setDir(1);
+            setAlt((prev) => !prev);
             if (pos[0] <= 0 || barriers.includes(map[pos[0] - 1][pos[1]])) {
                 return;
             }
             setPos([pos[0] - 1, pos[1]]);
-            setAlt((prev) => !prev);
-            setDir(1);
         }
         if (code === 40) {
+            setDir(0);
+            setAlt((prev) => !prev);
             if (
                 pos[0] >= map.length - 1 ||
                 barriers.includes(map[pos[0] + 1][pos[1]])
@@ -170,8 +172,6 @@ const App = ({ history }) => {
                 return;
             }
             setPos([pos[0] + 1, pos[1]]);
-            setAlt((prev) => !prev);
-            setDir(0);
         }
     };
 
