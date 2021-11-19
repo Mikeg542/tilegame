@@ -16,16 +16,15 @@ code {
   flex-wrap: wrap;
 }
 .tile {
-  /*background-image: url("./pack.png");
-  background-size: 768px 768px;*/
-  width: 24px;
-  height: 24px;
+  background-image: url("./tileset.png");
+  background-size: 608px 1440px;
+  width: 32px;
+  height: 32px;
   overflow: hidden;
 }
 #tile1 {
-  /*background-position-x: -24px;
-  background-position-y: 336px;*/
-  background-color: limegreen;
+  background-position-x: 476px;
+  background-position-y: 0;
 }
 #tile2 {
   /*background-position-x: -48px;
@@ -33,9 +32,8 @@ code {
   background-color: blue;
 }
 #tile3 {
-  /* background-position-x: -72px;
-  background-position-y: 336px;*/
-  background-color: forestgreen;
+  background-position-x: -224px;
+  background-position-y: 1056px;
 }
 #tile4 {
   background-color: darkgoldenrod;

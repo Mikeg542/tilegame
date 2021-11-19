@@ -39,7 +39,11 @@
 
 .drawTile {
   border: 1px solid black;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   box-sizing: border-box;
+}
+
+.character {
+  background-image: url("./fem1.png");
 }

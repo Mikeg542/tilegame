@@ -7,12 +7,16 @@ import { observer } from "mobx-react-lite";
 const App = ({ history }) => {
     const inputEl = useRef(null);
     const [currentKey, setCurrentKey] = useState(null);
+    const [alt, setAlt] = useState(false);
+    const [dir, setDir] = useState(0);
 
     const { DataStore } = useStore();
 
     const { pos, setPos } = DataStore;
 
     const VISION_LENGTH = 5;
+
+    const TILE_SIZE = 32;
 
     const map1 = [
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -139,18 +143,24 @@ const App = ({ history }) => {
                 return;
             }
             setPos([pos[0], pos[1] + 1]);
+            setAlt((prev) => !prev);
+            setDir(2);
         }
         if (code === 37) {
             if (pos[1] <= 0 || barriers.includes(map[pos[0]][pos[1] - 1])) {
                 return;
             }
             setPos([pos[0], pos[1] - 1]);
+            setAlt((prev) => !prev);
+            setDir(3);
         }
         if (code === 38) {
             if (pos[0] <= 0 || barriers.includes(map[pos[0] - 1][pos[1]])) {
                 return;
             }
             setPos([pos[0] - 1, pos[1]]);
+            setAlt((prev) => !prev);
+            setDir(1);
         }
         if (code === 40) {
             if (
@@ -160,6 +170,8 @@ const App = ({ history }) => {
                 return;
             }
             setPos([pos[0] + 1, pos[1]]);
+            setAlt((prev) => !prev);
+            setDir(0);
         }
     };
 
@@ -184,7 +196,10 @@ const App = ({ history }) => {
                 setCurrentKey(null);
             }}
         >
-            <div className="map" style={{ width: displayMap[0].length * 24 }}>
+            <div
+                className="map"
+                style={{ width: displayMap[0].length * TILE_SIZE }}
+            >
                 {displayMap.map((row) =>
                     row.map((tile) => (
                         <div id={"tile" + tile} className="tile" />
@@ -193,13 +208,15 @@ const App = ({ history }) => {
             </div>
             <div
                 style={{
-                    height: 24,
-                    width: 24,
-                    backgroundColor: "black",
-                    left: 120,
-                    top: 120,
+                    height: TILE_SIZE,
+                    width: TILE_SIZE,
+                    left: 160,
+                    top: 160,
+                    backgroundPositionX: !currentKey ? -32 : alt ? 0 : 32,
+                    backgroundPositionY: dir * 32,
                     position: "absolute",
                 }}
+                className="character"
             ></div>
         </div>
     );
