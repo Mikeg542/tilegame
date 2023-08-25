@@ -18,28 +18,7 @@ const App = ({ history }) => {
 
     const TILE_SIZE = 32;
 
-    const map1 = [
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 3, 3, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 3, 3, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 3, 3, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 4, 4, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 4, 4, 1, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 3, 3, 5, 1, 1, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 3, 3, 5, 2, 2, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 1, 1, 1, 3, 3, 5, 2, 2, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-        [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
-    ];
-
-    let map2 = [
+    let map = [
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
@@ -61,20 +40,64 @@ const App = ({ history }) => {
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
     ];
 
-    let map = map2;
-
-    // display map filters multidimensional map array to only display rows and columns VISION_LENGTH away from player position
-    const displayMap = map
-        .filter(
-            (rows, i) =>
-                i >= pos[0] - VISION_LENGTH && i <= pos[0] + VISION_LENGTH
-        )
-        .map((rows) =>
-            rows.filter(
-                (cols, i) =>
-                    i >= pos[1] - VISION_LENGTH && i <= pos[1] + VISION_LENGTH
-            )
-        );
+    let spriteMap = [
+        {
+            key: "tree",
+            location: [5, 9],
+            spritePos: [-546, -420],
+            height: 2,
+            width: 2,
+        },
+        {
+            key: "tree",
+            location: [6, 9],
+            spritePos: [-546, -420],
+            height: 2,
+            width: 2,
+        },
+        {
+            key: "flower",
+            location: [5, 11],
+            spritePos: [-64, -448],
+            height: 1,
+            width: 1,
+        },
+        {
+            key: "flower",
+            location: [5, 12],
+            spritePos: [-64, -448],
+            height: 1,
+            width: 1,
+        },
+        {
+            key: "flower",
+            location: [5, 13],
+            spritePos: [-64, -448],
+            height: 1,
+            width: 1,
+        },
+        {
+            key: "flower",
+            location: [6, 11],
+            spritePos: [-64, -448],
+            height: 1,
+            width: 1,
+        },
+        {
+            key: "flower",
+            location: [6, 12],
+            spritePos: [-64, -448],
+            height: 1,
+            width: 1,
+        },
+        {
+            key: "flower",
+            location: [6, 13],
+            spritePos: [-64, -448],
+            height: 1,
+            width: 1,
+        },
+    ];
 
     const barriers = [2, 3, 6, 9, 10, 11, 12, 13, 14]; //which tile ids count as unpassable
 
@@ -190,6 +213,11 @@ const App = ({ history }) => {
         <div
             className="App"
             onKeyDown={handleKeyDown}
+            style={{
+                overflow: "hidden",
+                width: TILE_SIZE * (VISION_LENGTH * 2 + 1),
+                height: TILE_SIZE * (VISION_LENGTH * 2 + 1),
+            }}
             ref={inputEl}
             tabIndex={0}
             onKeyUp={() => {
@@ -197,27 +225,50 @@ const App = ({ history }) => {
             }}
         >
             <div
-                className="map"
-                style={{ width: displayMap[0].length * TILE_SIZE }}
-            >
-                {displayMap.map((row) =>
-                    row.map((tile) => (
-                        <div id={"tile" + tile} className="tile" />
-                    ))
-                )}
-            </div>
-            <div
                 style={{
-                    height: TILE_SIZE,
-                    width: TILE_SIZE,
-                    left: 160,
-                    top: 160,
-                    backgroundPositionX: !currentKey ? -32 : alt ? 0 : 32,
-                    backgroundPositionY: dir * 32,
-                    position: "absolute",
+                    marginLeft: -32 * (pos[1] - 5),
+                    marginTop: -32 * (pos[0] - 5),
+                    position: "relative",
                 }}
-                className="character"
-            ></div>
+            >
+                <div
+                    className="map"
+                    style={{ width: map[0].length * TILE_SIZE }}
+                >
+                    {map.map((row) =>
+                        row.map((tile) => (
+                            <div id={"tile" + tile} className="tile" />
+                        ))
+                    )}
+                </div>
+                <div
+                    style={{
+                        height: TILE_SIZE,
+                        width: TILE_SIZE,
+                        left: 160,
+                        top: 160,
+                        backgroundPositionX: !currentKey ? -32 : alt ? 0 : 32,
+                        backgroundPositionY: dir * 32,
+                        position: "fixed",
+                        zIndex: 10,
+                    }}
+                    className="character"
+                ></div>
+                {spriteMap.map((sprite) => (
+                    <div
+                        style={{
+                            height: TILE_SIZE * sprite.height,
+                            width: TILE_SIZE * sprite.width,
+                            left: TILE_SIZE * sprite.location[0],
+                            top: TILE_SIZE * sprite.location[1],
+                            backgroundPositionX: sprite.spritePos[0],
+                            backgroundPositionY: sprite.spritePos[1],
+                            position: "absolute",
+                        }}
+                        className="tile"
+                    />
+                ))}
+            </div>
         </div>
     );
 };

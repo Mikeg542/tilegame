@@ -1,36 +1,8 @@
-.gameBoard {
-	width: 264px;
-	height: 264px;
-	position: relative;
-}
-.playerMoveBox {
+.board {
+	width: 100%;
 	border: 2px solid black;
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	width: 120px;
 }
-.playerMoveBox > div {
-	padding: 4px 16px;
-}
-.playerMoveBox > div:hover,
-.playerMoveBox > div.active {
-	background-color: #f5f5f5;
-	cursor: pointer;
-}
-
-.lifeBar {
-	width: 160px;
-	height: 4px;
-	background-color: #ccc;
-	transition: 0.4s ease all;
-	top: 20px;
-	right: 0;
-	position: absolute;
-}
-
-.lifeBar > div {
-	height: 4px;
-	background-color: red;
-	transition: 0.4s ease all;
+.hand {
+	width: 100%;
+	border: 1px solid red;
 }

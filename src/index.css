@@ -32,14 +32,15 @@ code {
   background-color: blue;
 }
 #tile3 {
-  background-position-x: -224px;
-  background-position-y: 1056px;
+  background-position-x: 476px;
+  background-position-y: 0;
 }
 #tile4 {
   background-color: darkgoldenrod;
 }
 #tile5 {
-  background-color: olivedrab;
+  background-position-x: 476px;
+  background-position-y: 0;
 }
 #tile6 {
   background-color: grey;
@@ -61,8 +62,8 @@ code {
   background-position-y: 1280px;
 }
 #tile11 {
-  background-position-x: -352px;
-  background-position-y: 1376px;
+  background-position-x: -64px;
+  background-position-y: 1406px;
 }
 #tile12 {
   background-position-x: -154px;
