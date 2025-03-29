@@ -1,11 +1,11 @@
 import { createContext, useContext } from "react";
 import DataStore from "./Stores/DataStore";
-import GameStore from "./Stores/GameStore";
+import TeamStore from "./Stores/TeamStore";
 
 class RootStore {
     constructor() {
         this.DataStore = new DataStore(this);
-        this.GameStore = new GameStore(this);
+        this.TeamStore = new TeamStore(this);
     }
 }
 
@@ -13,7 +13,7 @@ export const stores = new RootStore();
 
 export const storeContext = createContext({
     DataStore: stores.DataStore,
-    GameStore: stores.GameStore,
+    TeamStore: stores.TeamStore,
 });
 
 const useStore = () => useContext(storeContext);
