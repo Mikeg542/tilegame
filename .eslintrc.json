@@ -1,0 +1,97 @@
+{
+    "plugins": ["react", "react-hooks"],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "es2020": true
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
+    "rules": {
+        "react-hooks/rules-of-hooks": "error",
+        "react/jsx-uses-vars": "error",
+        "react/jsx-uses-react": "error",
+        "react/display-name": "off",
+        "react/prop-types": "off",
+        "array-callback-return": ["error", { "checkForEach": true }],
+        "no-await-in-loop": "error",
+        "no-duplicate-imports": "error",
+        "no-template-curly-in-string": "error",
+        "no-unmodified-loop-condition": "warn",
+        "no-unreachable-loop": "error",
+        "no-use-before-define": "warn",
+        "arrow-body-style": ["error", "as-needed"],
+        "class-methods-use-this": "error",
+        "default-case": "error",
+        "default-case-last": "error",
+        "dot-notation": "error",
+        "eqeqeq": "error",
+        "func-style": ["error", "expression"],
+        "logical-assignment-operators": ["error", "always"],
+        "no-alert": "error",
+        "no-bitwise": "error",
+        "no-console": "warn",
+        "no-continue": "error",
+        "no-delete-var": "error",
+        "no-else-return": "error",
+        "no-empty": "error",
+        "no-eval": "error",
+        "no-extra-boolean-cast": "error",
+        "no-global-assign": "error",
+        "no-implied-eval": "error",
+        "no-labels": "error",
+        "no-lone-blocks": "error",
+        "no-lonely-if": "error",
+        "no-loop-func": "error",
+        "no-multi-assign": "error",
+        "no-negated-condition": "error",
+        "no-new-wrappers": "error",
+        "no-plusplus": "error",
+        "no-return-assign": "error",
+        "no-sequences": "error",
+        "no-shadow": "error",
+        "no-shadow-restricted-names": "error",
+        "no-throw-literal": "error",
+        "no-undef-init": "error",
+        "no-undefined": "error",
+        "no-underscore-dangle": "error",
+        "no-unneeded-ternary": "error",
+        "no-unused-expressions": "error",
+        "no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+        "no-useless-concat": "error",
+        "no-useless-return": "error",
+        "no-var": "error",
+        "operator-assignment": ["error", "always"],
+        "prefer-const": "error",
+        "prefer-destructuring": [
+            "error",
+            {
+                "VariableDeclarator": { "object": true },
+                "AssignmentExpression": { "object": false, "array": false }
+            },
+            { "enforceForRenamedProperties": false }
+        ],
+        "prefer-object-spread": "error",
+        "prefer-template": "error",
+        "require-await": "error",
+        "yoda": ["error", "never"]
+    },
+    "ignorePatterns": [
+        "/src/TestUtils/**/*.js",
+        "/src/TestUtils/**/*.jsx",
+        "/src/setupTests.jsx",
+        "*.test.js",
+        "*.test.jsx",
+        "/src/apiMock/**/*.js"
+    ]
+}

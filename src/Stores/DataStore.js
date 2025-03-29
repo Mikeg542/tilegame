@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
 class DataStore {
-    pos = [5, 5];
+    pos = [7, 9];
 
     mapView = localStorage.getItem("map")
         ? JSON.parse(localStorage.getItem("map"))

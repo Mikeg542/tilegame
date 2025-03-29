@@ -6,13 +6,13 @@ import { toJS } from "mobx";
 const MapMaker = () => {
 	const { DataStore } = useStore();
 	const [color, setColor] = useState(1);
-	const [toggle, setToggle] = useState(false);
+	//const [toggle, setToggle] = useState(false);
 
 	const colorTile = (event) => {
 		DataStore.updateMap(
 			event.target.dataset.x,
 			event.target.dataset.y,
-			color
+			color,
 		);
 	};
 
@@ -37,7 +37,7 @@ const MapMaker = () => {
 							data-y={y}
 							onClick={colorTile}
 						></div>
-					))
+					)),
 				)}
 			</div>
 			<button onClick={() => DataStore.addRow()}>+ Row</button>

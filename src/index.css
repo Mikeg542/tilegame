@@ -22,6 +22,9 @@ code {
   height: 32px;
   overflow: hidden;
 }
+.tile.door {
+  background-image: "none";
+}
 #tile1 {
   background-position-x: 476px;
   background-position-y: 0;
