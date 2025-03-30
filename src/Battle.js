@@ -44,18 +44,23 @@ const Battle = ({ history }) => {
 			);
 		}
 	};
+
+	const poke = pokeData[TeamStore.team[0].id]
+
+	//console.log(poke)
 	return (
 		<div className="gameBoard">
 			<div className="lifeBar">
 				<div style={{ width: `${(enemyLife / 20) * 100}%` }} />
 			</div>
+			<img src={`./Generation1/${poke.sprite}.png`} />
 			<div
 				className="playerMoveBox"
 				ref={inputEl}
 				tabIndex={0}
 				onKeyDown={handleKeyDown}
 			>
-				{moves.map((move, i) => (
+				{poke.moves.map((move, i) => (
 					<div
 						className={i === selectedMove ? "active" : ""}
 						onClick={doMove(i)}
