@@ -11,6 +11,8 @@ const App = () => {
 
     const [doorOpen, setDoorOpen] = useState([false]);
 
+    console.log('render')
+
     let map = [
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
         [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],

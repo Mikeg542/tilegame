@@ -1,9 +1,36 @@
 import React, { useState, useRef, useEffect } from "react";
+import { pokeData } from './Data/pokeData'
+import { useStore } from './storeFunctions'
 
 import "./battle.css";
 
-const Battle = () => {
+const Battle = ({ history }) => {
 	const inputEl = useRef(null);
+
+	const { TeamStore } = useStore();
+
+	const [selectedMove, setSelectedMove] = useState(0);
+	const [enemyLife, setEnemyLife] = useState(20);
+
+	useEffect(() => {
+		inputEl.current.focus();
+	}, []);
+
+	const moves = [
+		{ name: "Tackle", accuracy: 95, damage: 35 },
+		{ name: "Scratch", accuracy: 100, damage: 30 },
+		{
+			name: "Growl",
+			accuracy: 100,
+			damage: 0,
+			statReduce: "attack",
+			amount: 10,
+		},
+	];
+
+	const doMove = (key) => () => {
+		setEnemyLife((prev) => prev - Math.floor(moves[key].damage * 0.1));
+	};
 
 	const handleKeyDown = (event) => {
 		if (![38, 40].includes(event.keyCode)) {
@@ -11,40 +38,41 @@ const Battle = () => {
 		}
 		if (event.keyCode === 40) {
 			setSelectedMove((prev) =>
-				prev === moves.length - 1 ? 0 : prev + 1,
+				prev === moves.length - 1 ? 0 : prev + 1
 			);
 		}
 		if (event.keyCode === 38) {
 			setSelectedMove((prev) =>
-				prev === 0 ? moves.length - 1 : prev - 1,
+				prev === 0 ? moves.length - 1 : prev - 1
 			);
 		}
 	};
 
-	const endTurn = () => {
-		GameStore.nextTurn();
-	};
+	const poke = pokeData[TeamStore.team[0].id]
 
+	//console.log(poke)
 	return (
 		<div className="gameBoard">
-			{gameStart && (
-				<>
-					<div className="hand">
-						{hand.map((card, i) => (
-							<div onClick={handlePlayCard(i)}>
-								{cards[card].name}
-							</div>
-						))}
+			<div className="lifeBar">
+				<div style={{ width: `${(enemyLife / 20) * 100}%` }} />
+			</div>
+			<img src={`./Generation1/${poke.sprite}.png`} />
+			<div
+				className="playerMoveBox"
+				ref={inputEl}
+				tabIndex={0}
+				onKeyDown={handleKeyDown}
+			>
+				{poke.moves.map((move, i) => (
+					<div
+						className={i === selectedMove ? "active" : ""}
+						onClick={doMove(i)}
+					>
+						{move.name}
 					</div>
-					<div className="board">
-						{GameStore.board.map((c) => (
-							<div>{c.name}</div>
-						))}
-					</div>
-					<button onClick={endTurn}>End Turn</button>
-				</>
-			)}
+				))}
+			</div>
 		</div>
 	);
 };
-export default observer(Battle);
+export default Battle;
